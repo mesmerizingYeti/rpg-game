@@ -1,6 +1,6 @@
 let obi = {
     name: 'Obi-Wan Kenobi',
-    hp: 1,
+    hp: 120,
     attack: 1,
     counter: 1,
     img: './assets/images/obi-wan-kenobi.png',
@@ -9,7 +9,7 @@ let obi = {
 
 let luke = {
     name: 'Luke Skywalker',
-    hp: 1,
+    hp: 100,
     attack: 1,
     counter: 1,
     img: './assets/images/luke-skywalker.png',
@@ -18,7 +18,7 @@ let luke = {
 
 let sidious = {
     name: 'Darth Sidious',
-    hp: 1,
+    hp: 150,
     attack: 1,
     counter: 1,
     img: './assets/images/darth-sidious.png',
@@ -27,7 +27,7 @@ let sidious = {
 
 let maul = {
     name: 'Darth Maul',
-    hp: 1,
+    hp: 180,
     attack: 1,
     counter: 1,
     img: './assets/images/darth-maul.png',
@@ -46,6 +46,8 @@ const chooseDefender = i => {
     $(`#${defender.cardID}`).removeClass('bg-danger')
     $(`#${defender.cardID}`).addClass('bg-dark')
 
+    updateDocument()
+
     $('#attack-btn').click( function(event) {
 
     })
@@ -60,6 +62,8 @@ const chooseCharacter = i => {
     $('#fourth-row .card').removeClass('bg-success')
     $('#fourth-row .card').addClass('bg-danger')
 
+    updateDocument()
+
     $('#fourth-row .card').click( function(event) {
         console.log(event)
         if (defender === '') {
@@ -70,7 +74,13 @@ const chooseCharacter = i => {
 }
 
 const updateDocument = _ => {
-    $(`#${chooseCharacter.cardID}`).
+    $(`#${chooseCharacter.cardID}-health`).text(chooseCharacter.hp)
+    if (defender !== '') {
+        $(`#${defender.cardID}-health`).text(defender.hp)
+    }
+    enemies.forEach( x => {
+        $(`#${x.cardID}-health`).text(x.hp)
+    })
 }
 
 $('#second-row .card').click( function(event) {
