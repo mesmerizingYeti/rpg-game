@@ -4,7 +4,7 @@ let obi = {
     attack: 1,
     counter: 1,
     img: './assets/images/obi-wan-kenobi.png',
-    cardID: '#obi-card'
+    cardID: 'obi-card'
 }
 
 let luke = {
@@ -13,7 +13,7 @@ let luke = {
     attack: 1,
     counter: 1,
     img: './assets/images/luke-skywalker.png',
-    cardID: '#luke-card'
+    cardID: 'luke-card'
 }
 
 let sidious = {
@@ -22,7 +22,7 @@ let sidious = {
     attack: 1,
     counter: 1,
     img: './assets/images/darth-sidious.png',
-    cardID: '#sidious-card'
+    cardID: 'sidious-card'
 }
 
 let maul = {
@@ -31,38 +31,36 @@ let maul = {
     attack: 1,
     counter: 1,
     img: './assets/images/darth-maul.png',
-    cardID: '#maul-card'
+    cardID: 'maul-card'
 }
 
 const characters = [obi, luke, sidious, maul]
 let chosenCharacter = ''
+let defender = ''
 let enemies = []
 
 const chooseCharacter = i => {
-    console.log('hello')
     chosenCharacter = characters[i]
-    console.log(chosenCharacter)
     enemies = characters
     enemies.splice(i, 1)
-    $('#third-row').append($(chosenCharacter.cardID).remove())
-    enemies.forEach( x => $('#fourth-row').append($(x.cardID).remove()) )
+    $('#third-row').append($(`#${chosenCharacter.cardID}`).remove())
+    enemies.forEach( x => $('#fourth-row').append($(`#${x.cardID}`).remove()) )
     $('#fourth-row .card').removeClass('bg-success')
     $('#fourth-row .card').addClass('bg-danger')
 }
 
-$('#obi-card').click(function (event) {
-    console.log(event)
-    chooseCharacter(0)
+const chooseDefender = i => {
+    defender = enemies[i]
+    enemies.splice(i, 1)
+    
+}
+
+$('#second-row .card').click( function(event) {
+    characters.forEach( (x, i) => ($(this).attr('id') === x.cardID)?chooseCharacter(i):'')
 })
-$('#luke-card').click(function (event) {
-    console.log(event)
-    chooseCharacter(1)
-})
-$('#sidious-card').click(function (event) {
-    console.log(event)
-    chooseCharacter(2)
-})
-$('#maul-card').click(function (event) {
-    console.log(event)
-    chooseCharacter(3)
+
+$('#fourth-row .card').click( function(event) {
+    if (defender !== '') {
+
+    }
 })

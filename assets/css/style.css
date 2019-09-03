@@ -1,10 +1,17 @@
 .card {
     margin: 10px;
     border-radius: 15px;
-    cursor: pointer;
 }
 .card-img-top {
     height: auto;
     width:  200px;
     border-radius: 0;
+}
+
+#second-row .card {
+    cursor: pointer;
+}
+
+#fourth-row .card {
+    cursor: pointer;
 }
