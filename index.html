@@ -16,57 +16,62 @@
 
     <div class="container">
 
-        <div class="row">
-            <h1 class="center-align">Star Wars RPG</h1>
+        <div class="row d-flex justify-content-center" id="first-row">
+            <h1 class="">Star Wars RPG</h1>
         </div>
 
-        <div class="row">
-            <div class="card friendly">
-                <img src="./assets/images/obi-wan-kenobi.png" class="card-img-top" alt="Obi-Wan Kenobi">
-                <h5 class="card-title">Obi-Wan Kenobi</h5>
-                <div class="card-text">
-                    <p class="" id="obi-health">0</p>
+        <div class="row d-flex justify-content-center" id="second-row">
+            <div class="card shadow text-center bg-success text-white" id="obi-card">
+                <div class="card-header">Obi-Wan Kenobi</div>
+                <img src="./assets/images/obi-wan-kenobi.png" class="card-img-top rounded-0" alt="Obi-Wan Kenobi">
+                <div class="card-text pt-1 pb-1">
+                    <p class="mb-0" id="obi-health">0</p>
                 </div>
             </div>
-            <div class="card friendly">
+            <div class="card shadow text-center bg-success text-white" id="luke-card">
+                <div class="card-header">Luke Skywalker</div>
                 <img src="./assets/images/luke-skywalker.png" class="card-img-top" alt="Luke Skywalker">
-                <h5 class="card-title">Luke Skywalker</h5>
-                <div class="card-text">
-                    <p class="" id="luke-health">0</p>
+                <div class="card-text pt-1 pb-1">
+                    <p class="mb-0" id="luke-health">0</p>
                 </div>
             </div>
-            <div class="card friendly">
+            <div class="card shadow text-center bg-success text-white" id="sidious-card">
+                <div class="card-header">Darth Sidious</div>
                 <img src="./assets/images/darth-sidious.png" class="card-img-top" alt="Darth Sidious">
-                <h5 class="card-title">Darth Sidious</h5>
-                <div class="card-text">
-                    <p class="" id="sidious-health">0</p>
+                <div class="card-text pt-1 pb-1">
+                    <p class="mb-0" id="sidious-health">0</p>
                 </div>
             </div>
-            <div class="card friendly">
+            <div class="card shadow text-center bg-success text-white" id="maul-card">
+                <div class="card-header">Darth Maul</div>
                 <img src="./assets/images/darth-maul.png" class="card-img-top" alt="Darth Maul">
-                <h5 class="card-title">Darth Maul</h5>
-                <div class="card-text">
-                    <p class="" id="maul-health">0</p>
+                <div class="card-text pt-1 pb-1">
+                    <p class="mb-0" id="maul-health">0</p>
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <div id="chosen-character">
         <h2>Your character</h2>
-    </div>
-    <div id="enemies-available">
-        <h2>Enemies Available to Attack</h2>
-    </div>
-    <div id="fight-section">
-        <h2>Fight Section</h2>
-        <button id="attack-btn"></button>
-    </div>
-    <div id="defender">
+        <div class="row " id="third-row"></div>
 
-    </div>
-    <div id="fight-log">
+        <h2>Enemies Available to Attack</h2>
+        <div class="row" id="fourth-row"></div>
+
+        <!-- Fight Section -->
+        <div class="row" id="fifth-row">
+            <h2>Fight Section</h2>
+            <button id="attack-btn">Attack</button>
+        </div>
+
+        <!-- Defender Section -->
+        <div class="row" id="sixth-row">
+
+        </div>
+
+        <!-- Fight Log -->
+        <div class="row" id="seventh-row">
+
+        </div>
 
     </div>
 
@@ -79,6 +84,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="./assets/javascript/game.js"></script>
 </body>
 
