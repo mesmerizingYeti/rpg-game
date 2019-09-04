@@ -73,15 +73,23 @@ $('#attack-btn').click( function(event) {
             setLog(`You attacked ${characters[defender].name} for ${characters[chosen].attack * attackMultiplier}.`)
             // Defender is defeated
             if (defenderHP <= 0) {
-                alert('You won!')
                 if (unselected.length > 0) {
-                    setLog(`You have defeated ${characters[defender].name}, choose another enemy to fight.`)
+                    swal({
+                        text: `You have defeated ${characters[defender].name}, choose another enemy to fight.`,
+                        button: 'Roger, roger'
+                    })
+                    setLog('')
                     hide($('[id^=battle-row]'))
                     hide($('#fight-log-row'))
                     show($('[id^=enemy-row]'))
                 } else {
                     // Win condition - all enemies defeated
-                    setLog('You won!! Click restart to play again.')
+                    setLog('You won!!')
+                    swal({
+                        title: 'You won!',
+                        text: 'Click restart to play again.',
+                        icon: 'success'
+                    })
                     // Add restart game button
                     addToLog(`<button id="restart-btn" class="btn btn-primary">Restart</button>`)
                     $('#restart-btn').click(_ => restartGame())
@@ -94,17 +102,29 @@ $('#attack-btn').click( function(event) {
                 addToLog(`${characters[defender].name} attacked you back for ${characters[defender].counter}.`)
                 if (characterHP <= 0) {
                     // Lose condition
-                    alert('You lose!')
+                    swal({
+                        title: 'You lost :(',
+                        text: 'Click restart to try again.',
+                        icon: 'error'
+                    })
+                    addToLog(`<button id="restart-btn" class="btn btn-primary">Restart</button>`)
+                    $('#restart-btn').click(_ => restartGame())
                 }
             }
             attackMultiplier++
             updateDocument()
     
         } else {
-            alert('Choose a defender first!')
+            swal({
+                text: 'Choose a defender first!',
+                icon: 'warning'
+            })
         }
     } else {
-        alert('Choose your character first!')
+        swal({
+            text: 'Choose your character first!',
+            icon: 'warning'
+        })
     }
 })
 
@@ -133,7 +153,8 @@ const restartGame = _ => {
         `)
 
     })
-    hide($('.row').not('#title-row,#character-row-title,#character-row'))
+    hide($('.row'))
+    show($('#title-row,#character-row-title,#character-row'))
     // Add click function to every card in second-row
     $(`#character-row .card`).click(function (event) {
         chooseCharacter(event)
