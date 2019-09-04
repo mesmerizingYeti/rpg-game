@@ -7,26 +7,17 @@ let defenderHP = 0
 
 const addToLog = x => $('#fight-log').append(`<br>${x}`)
 const setLog = x => $('#fight-log').text(x)
+const hide = x => {
+    x.css('height', '0')
+    x.css('visibility', 'hidden')
+}
+const show = x => {
+    x.css('height', 'auto')
+    x.css('visibility', 'visible')
+}
 const updateDocument = _ => {
     chosen !== -1 ? $(`#${characters[chosen].cardID}-health`).text(characterHP) : ''
     defender !== -1 ? $(`#${characters[defender].cardID}-health`).text(defenderHP) : ''
-}
-
-const chooseDefender = event => {
-    // Iterate thru characters and find the defender using event
-    characters.forEach((x, i) => {
-        if (event.currentTarget.id === x.cardID) {
-            defender = i
-            defenderHP = characters[i].hp
-            // Remove defender from unselected
-            unselected.splice(unselected.indexOf(defender), 1)
-            // Move defender's card to sixth-row
-            $('#sixth-row').append($(`#${characters[defender].cardID}`).remove())
-            $(`#${characters[defender].cardID}`).removeClass('bg-danger')
-            $(`#${characters[defender].cardID}`).addClass('bg-dark')
-        }
-    })
-    updateDocument()
 }
 
 const chooseCharacter = event => {
@@ -37,22 +28,44 @@ const chooseCharacter = event => {
             characterHP = characters[i].hp
             // Remove chosen charcter from unselected
             unselected.splice(unselected.indexOf(chosen), 1)
-            // Move chosen's card to third-row
-            $('#third-row').append($(`#${characters[chosen].cardID}`).remove())
+            // Move chosen's card to chosen div
+            $('#chosen').append($(`#${characters[chosen].cardID}`).remove())
             // Move all other cards to fourth-row
-            unselected.forEach(y => $('#fourth-row').append($(`#${characters[y].cardID}`).remove()))
-            $('#fourth-row .card').removeClass('bg-success')
-            $('#fourth-row .card').addClass('bg-danger')
+            unselected.forEach(y => $('#enemy-row').append($(`#${characters[y].cardID}`).remove()))
+            $('#enemy-row .card').removeClass('bg-success')
+            $('#enemy-row .card').addClass('bg-danger')
             // Add click function to card's in fourth-row
-            $('#fourth-row .card').click(function (event) {
-                (defender === -1) ? chooseDefender(event) : ''
+            $('#enemy-row .card').click(function (event) {
+                defender === -1 ? chooseDefender(event) : ''
             })
         }
     })
+    hide($('[id^=character-row]'))
+    show($('[id^=enemy-row]'))
     updateDocument()
 }
 
-$('#attack-btn').click(function (event) {
+const chooseDefender = event => {
+    // Iterate thru characters and find the defender using event
+    characters.forEach((x, i) => {
+        if (event.currentTarget.id === x.cardID) {
+            defender = i
+            defenderHP = characters[i].hp
+            // Remove defender from unselected
+            unselected.splice(unselected.indexOf(defender), 1)
+            // Move defender's card to defender div
+            $('#defender').append($(`#${characters[defender].cardID}`).remove())
+            $(`#${characters[defender].cardID}`).removeClass('bg-danger')
+            $(`#${characters[defender].cardID}`).addClass('bg-dark')
+        }
+    })
+    hide($('[id^=enemy-row]'))
+    show($('[id^=battle-row]'))
+    show($('#fight-log-row'))
+    updateDocument()
+}
+
+$('#attack-btn').click( function(event) {
     if (chosen !== -1) {
         if (defender !== -1) {
             // Chosen attacks defender
@@ -63,6 +76,9 @@ $('#attack-btn').click(function (event) {
                 alert('You won!')
                 if (unselected.length > 0) {
                     setLog(`You have defeated ${characters[defender].name}, choose another enemy to fight.`)
+                    hide($('[id^=battle-row]'))
+                    hide($('#fight-log-row'))
+                    show($('[id^=enemy-row]'))
                 } else {
                     // Win condition - all enemies defeated
                     setLog('You won!! Click restart to play again.')
@@ -83,7 +99,7 @@ $('#attack-btn').click(function (event) {
             }
             attackMultiplier++
             updateDocument()
-
+    
         } else {
             alert('Choose a defender first!')
         }
@@ -106,7 +122,7 @@ const restartGame = _ => {
     setLog('')
     // Add card for each character to second-row
     characters.forEach(x => {
-        $('#second-row').append(`
+        $('#character-row').append(`
             <div class="card shadow text-center bg-success text-white" id="${x.cardID}">
                 <div class="card-header">${x.name}</div>
                 <img src="${x.img}" class="card-img-top rounded-0" alt="${x.name}">
@@ -117,8 +133,9 @@ const restartGame = _ => {
         `)
 
     })
+    hide($('.row').not('#title-row,#character-row-title,#character-row'))
     // Add click function to every card in second-row
-    $(`#second-row .card`).click(function (event) {
+    $(`#character-row .card`).click(function (event) {
         chooseCharacter(event)
     })
 }

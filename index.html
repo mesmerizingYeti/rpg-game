@@ -9,39 +9,40 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+    <title>Star Wars RPG</title>
 </head>
 
 <body>
 
     <div class="container">
 
-        <div class="row d-flex justify-content-center" id="first-row">
+        <div class="row d-flex justify-content-center" id="title-row">
             <h1 class="">Star Wars RPG</h1>
         </div>
 
-        <!-- To Choose Section -->
-        <div class="row d-flex justify-content-center" id="second-row"></div>
+        <!-- Choose Character Section -->
+        <div class="row d-flex justify-content-center" id="character-row-title"><h2>Choose your character</h2></div>
+        <div class="row d-flex justify-content-center" id="character-row"></div>
 
-        <!-- Chosen Character Section -->
-        <h2>Your character</h2>
-        <div class="row " id="third-row"></div>
-
-        <!-- Enemies Section -->
-        <h2>Enemies Available to Attack</h2>
-        <div class="row" id="fourth-row"></div>
-
-        <!-- Fight Section -->
-        <h2>Fight Section</h2>
-        <div class="row ml-2" id="fifth-row">
+        <!-- Choose Enemy Section -->
+        <div class="row d-flex justify-content-center" id="enemy-row-title"><h2>Choose your enemy</h2></div>
+        <div class="row d-flex justify-content-center" id="enemy-row"></div>
+        
+        <!-- Battle Section -->
+        <div class="row" id="battle-row-title">
+            <div class="col-6 d-flex justify-content-center"><h2>Your character</h2></div>
+            <div class="col-6 d-flex justify-content-center"><h2>Defender</h2></div>
+        </div>
+        <div class="row" id="battle-row">
+            <div class="col-6 d-flex flex-column align-items-center" id="chosen"></div>
+            <div class="col-6 d-flex justify-content-center" id="defender"></div>
+        </div>
+        <div class="row d-flex justify-content-center" id="battle-row-btn">
             <button id="attack-btn" class="btn btn-primary">Attack</button>
         </div>
 
-        <!-- Defender Section -->
-        <div class="row" id="sixth-row"></div>
-
         <!-- Fight Log -->
-        <div class="row ml-2" id="seventh-row">
+        <div class="row" id="fight-log-row">
             <p id="fight-log"></p>
         </div>
 
