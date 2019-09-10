@@ -8,29 +8,33 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/pokemonStyle.css">
     <title>Pokemon</title>
 </head>
 
 <body>
     <div class="container d-flex flex-column justify-content-center">
-        
-        <div id="choose-screen d-flex flex-row-wrap justify-content-center">
 
+        <!-- Choose Character or Enemy Section -->
+        <div id="choose-row" class="row d-flex justify-content-center text-light pt-5">
+            <div id="choose-screen-title"><h2>Choose your Character!</h2></div>
+            <div id="choose-screen" class="d-flex flex-row-wrap justify-content-center align-items-center"></div>
         </div>
 
-        
-        <div id="battle-screen">
-            <div id="battleground-wrapper">
-                <img src="./assets/images/GrassBattleBackground.png" alt="Pokemon Battle Background" id="battleground-img">
+        <!-- Battle Section -->
+        <div class="row" id="battle-row">
+            <div id="battle-screen">
+                <div id="battleground-wrapper">
+                    <img src="./assets/images/GrassBattleBackground.png" alt="Pokemon Battle Background" id="battleground-img">
+                </div>
+                <div id="text-box-wrapper">
+                    <img src="./assets/images/PokemonTextBox.png" alt="Pokemon Text Box" id="text-box-img">
+                </div>
+                <p></p>
             </div>
-            <div id="text-box-wrapper">
-                <img src="./assets/images/PokemonTextBox.png" alt="Pokemon Text Box" id="text-box-img">
-            </div>
-            <p></p>
         </div>
+        
     </div>
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -41,7 +45,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="./assets/javascript/constants.js"></script>
+    <script src="https://unpkg.com/tippy.js@4"></script>
+    <script src="./assets/javascript/constants.js"></script>
     <script src="./assets/javascript/pokemonVersion.js"></script>
 </body>
 

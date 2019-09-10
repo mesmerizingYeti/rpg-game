@@ -1,0 +1,51 @@
+body {
+    background-color: black;
+}
+
+.popover-img {
+    height: 100px;
+    width: auto;
+}
+
+.no-outline {
+    outline: none;
+}
+
+#hello {
+    height: 50px;
+    width: 100px;
+}
+
+#choose-row {
+    background-color: rgb(107, 194, 123);
+}
+
+#choose-screen {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+#battleground-wrapper {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+}
+
+#text-box-wrapper {
+    position: relative;
+    height: 20vh;
+    width: 100%;
+}
+
+#text-box-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#battleground-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
