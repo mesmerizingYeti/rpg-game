@@ -16,24 +16,38 @@
     <div class="container d-flex flex-column justify-content-center">
 
         <!-- Choose Character or Enemy Section -->
-        <div id="choose-row" class="row d-flex justify-content-center text-light pt-5">
-            <div id="choose-screen-title"><h2>Choose your Character!</h2></div>
+        <div id="choose-row" class="row d-flex justify-content-center text-light">
+            <div id="choose-screen-title mt-5"><h2>Choose your Character!</h2></div>
             <div id="choose-screen" class="d-flex flex-row-wrap justify-content-center align-items-center"></div>
         </div>
 
         <!-- Battle Section -->
-        <div class="row" id="battle-row">
+        <div id="battle-row" class="row" >
             <div id="battle-screen">
-                <div id="battleground-wrapper">
+                <div id="battleground-container">
                     <img src="./assets/images/GrassBattleBackground.png" alt="Pokemon Battle Background" id="battleground-img">
                 </div>
-                <div id="text-box-wrapper">
-                    <img src="./assets/images/PokemonTextBox.png" alt="Pokemon Text Box" id="text-box-img">
+                <div id="battle-text-container">
+                    <img src="./assets/images/PokemonTextBox.png" alt="Pokemon Text Box" id="battle-text-img">
+                    <div id="battle-log-container" class="row p-0 m-0">
+                        <div class="col p-0 m-0">
+                            <p id="battle-log"></p>
+                        </div>
+                        <div class="col p-0 m-0">
+                            <div id="battle-options-1" class="row battle-options-row pt-4 px-2">
+                                <div class="col text-center battle-option"><strong>FIGHT</strong></div>
+                                <div class="col text-center battle-option "><strong>BAG</strong></div>
+                            </div>
+                            <div id="battle-options-2" class="row battle-options-row pt-4 px-2">
+                                <div class="col text-center battle-option"><strong>POKéMON</strong></div>
+                                <div class="col text-center battle-option"><strong>RUN</strong></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p></p>
             </div>
         </div>
-        
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
