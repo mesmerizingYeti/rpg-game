@@ -239,7 +239,7 @@ const winBattle = _ => {
 
 const win = _ => {
     swal({
-        title: 'Congradulations!',
+        title: 'Congratulations!',
         text: 'You defeated all your opponents! Good job!',
         icon: 'success'
     })
