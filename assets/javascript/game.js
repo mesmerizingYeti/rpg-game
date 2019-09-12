@@ -60,7 +60,7 @@ const pickCharacter = _ => {
             function () {
                 $(`#${pokeballID}`).attr('src', './assets/images/pokeball-moving.gif')
             }, function () {
-                $(`#${pokeballID}`).attr('src', './assets/images/pokeball-still.png')
+                $(`#${pokeballID}`).attr('src', './assets/images/Pokeball-still.png')
             }
         )
         // Add tooltip for pokeball
