@@ -52,7 +52,7 @@ const pickCharacter = _ => {
         console.log(`Adding pokeball for index ${x}`)
         $('#choose-screen').append(`
             <div id="${char.id}-container" class="pokeball">
-                <img src="./assets/images/pokeball-still.png" alt="Pokeball" class="px-4 no-outline" id="${pokeballID}" data-index="${x}">
+                <img src="./assets/images/Pokeball-still.png" alt="Pokeball" class="px-4 no-outline" id="${pokeballID}" data-index="${x}">
             </div>
         `)
         // Add hover animation for pokeball
