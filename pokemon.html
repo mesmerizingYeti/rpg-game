@@ -17,16 +17,22 @@
 
         <!-- Choose Character or Enemy Section -->
         <div id="choose-row" class="row d-flex justify-content-center text-light">
-            <div id="choose-screen-title mt-5"><h2>Choose your Character!</h2></div>
+            <div id="choose-screen-title mt-5"><h2 id="choose-title">Choose your Character!</h2></div>
             <div id="choose-screen" class="d-flex flex-row-wrap justify-content-center align-items-center"></div>
         </div>
 
         <!-- Battle Section -->
         <div id="battle-row" class="row" >
             <div id="battle-screen">
+                <!-- Battleground Section -->
                 <div id="battleground-container">
                     <img src="./assets/images/GrassBattleBackground.png" alt="Pokemon Battle Background" id="battleground-img">
+                    <div id="chosen-container"></div>
+                    <div id="chosen-health" class="card"></div>
+                    <div id="defender-container"></div>
+                    <div id="defender-health" class="card"></div>
                 </div>
+                <!-- Battle Text -->
                 <div id="battle-text-container">
                     <img src="./assets/images/PokemonTextBox.png" alt="Pokemon Text Box" id="battle-text-img">
                     <div id="battle-log-container" class="row p-0 m-0">
@@ -60,6 +66,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/tippy.js@4"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="./assets/javascript/constants.js"></script>
     <script src="./assets/javascript/pokemonVersion.js"></script>
 </body>

@@ -19,7 +19,7 @@ const characters = [
         name: 'Darth Sidious',
         hp: 150,
         attack: 20,
-        counter: 5,
+        counter: 15,
         img: './assets/images/darth-sidious.png',
         cardID: 'sidious-card',
         id: 'darth-sidious'
@@ -27,7 +27,7 @@ const characters = [
         name: 'Darth Maul',
         hp: 180,
         attack: 20,
-        counter: 5,
+        counter: 25,
         img: './assets/images/darth-maul.png',
         cardID: 'maul-card',
         id: 'darth-maul'

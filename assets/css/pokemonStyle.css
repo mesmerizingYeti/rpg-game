@@ -27,6 +27,7 @@ body {
     width: 100%;
     font-size: 1.5em;
     font-family: pokemonBattleFont;
+    cursor: pointer;
 }
 
 #hello {
@@ -63,13 +64,21 @@ body {
 }
 
 #chosen-img {
-    bottom: 144px;
-    left: 20%;
+    bottom: 0;
+    left: 13%;
+}
+
+#chosen-health {
+
 }
 
 #defender-img {
     top: 70px;
-    right: 25%;
+    right: 13%;
+}
+
+#defender-health {
+    
 }
 
 #battle-text-container {
