@@ -97,9 +97,12 @@ const setupBattle = _ => {
     show($('#battle-log-container'))
     // Create characters
     let chosenChar = `<img src="./assets/images/${characters[chosen].id}-cartoon.png" alt="chosen" id="chosen-img" class="character-img">`
-    let defenderChar = `<img src="./assets/images/${characters[defender].id}-cartoon.png" alt="defender" id="defender-img" class="character-img">`
     $(`#chosen-container`).html(chosenChar)
+    $(`#chosen-title`).text(characters[chosen].name)
+    let defenderChar = `<img src="./assets/images/${characters[defender].id}-cartoon.png" alt="defender" id="defender-img" class="character-img">`
     $(`#defender-container`).html(defenderChar)
+    $('#defender-title').text(characters[defender].name)
+    $('#defender-health').animate({width: '100%'}, 200)
     // Setup battle text-box
     $('#battle-log').text(`Wild ${characters[defender].name.toUpperCase()} appeared!`)
     // Start battle on mouse click
@@ -123,7 +126,9 @@ const startBattle = event => {
         switch ($(this).text()) {
             case 'FIGHT':
                 $('#battle-log').text(`${characters[chosen].name} used punch!`)
+                // Update defenderHP
                 defenderHP -= attackMultiplier * characters[chosen].attack
+                $(`#defender-health`).animate({width: `${Math.floor(defenderHP/characters[defender].hp*100)}%`}, 200)
                 attackMultiplier++
                 // Defender fainted
                 if (defenderHP < 0) {
@@ -139,7 +144,9 @@ const startBattle = event => {
                         return
                     }
                     $('#battle-log').text(`${characters[defender].name} countered with bitch slap!`)
+                    // Update chosenHP
                     chosenHP -= characters[defender].counter
+                    $(`#chosen-health`).animate({width: `${Math.floor(chosenHP/characters[chosen].hp*100)}%`}, 200)
                     // Lose Condition
                     if (chosenHP <= 0) {
                         isBattleOver = true
@@ -223,6 +230,8 @@ const resetGame = _ => {
     unselected = [0, 1, 2, 3]
     $('#choose-title').text(`Choose your Character!`)
     $('.pokeball').remove()
+    $('#chosen-health').css('width', '100%')
+    $('#defender-health').css('width', '100%')
     choosePokemon()
 }
 

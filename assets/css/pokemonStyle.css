@@ -68,8 +68,12 @@ body {
     left: 13%;
 }
 
-#chosen-health {
-
+#chosen-health-container {
+    font-family: pokemonBattleFont;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 40%;
 }
 
 #defender-img {
@@ -77,8 +81,12 @@ body {
     right: 13%;
 }
 
-#defender-health {
-    
+#defender-health-container {
+    font-family: pokemonBattleFont;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 40%;
 }
 
 #battle-text-container {
