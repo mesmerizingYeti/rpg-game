@@ -10,7 +10,7 @@ const characters = [
     }, {
         name: 'Luke Skywalker',
         hp: 100,
-        attack: 20,
+        attack: 15,
         counter: 5,
         img: './assets/images/luke-skywalker.png',
         cardID: 'luke-card',

@@ -137,12 +137,13 @@ body {
 }
 
 #battle-log {
-    font-size: 2.1em;
+    font-size: 1.9em;
     font-family: pokemonBattleFont;
     position: relative;
+    max-width: 100%;
     width: 100%;
     height: 100%;
     left: 50px;
-    top: 20px;
+    top: 18px;
     margin: 0;
 }

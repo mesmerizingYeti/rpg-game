@@ -18,8 +18,22 @@ const show = x => {
     x.css('visibility', 'visible')
 }
 
-const randomAttack = _ => attacks[Math.floor(Math.random()*(attacks.length-0.001))]
+const randomAttack = _ => attacks[Math.floor(Math.random() * (attacks.length - 0.001))]
 
+// Adding animate.css animations to elements
+const animateCSS = (element, animationName, callback) => {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName)
+        node.removeEventListener('animationend', handleAnimationEnd)
+
+        if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
+}
 
 // Pick character
 const pickCharacter = _ => {
@@ -104,7 +118,7 @@ const setupBattle = _ => {
     let defenderChar = `<img src="./assets/images/${characters[defender].id}-cartoon.png" alt="defender" id="defender-img" class="character-img">`
     $(`#defender-container`).html(defenderChar)
     $('#defender-title').text(characters[defender].name)
-    $('#defender-health').animate({width: '100%'}, 200)
+    $('#defender-health').animate({ width: '100%' }, 200)
     // Setup battle text-box
     $('#battle-log').text(`Wild ${characters[defender].name.toUpperCase()} appeared!`)
     // Start battle on mouse click
@@ -129,40 +143,11 @@ const startBattle = event => {
         isPaused = true
         switch (event.currentTarget.textContent) {
             case 'FIGHT':
-                $('#battle-log').text(`${characters[chosen].name} used ${randomAttack()}!`)
-                // Update defenderHP
-                console.log(`Attack Multiplier: ${attackMultiplier}`)
-                defenderHP -= attackMultiplier * characters[chosen].attack
-                $(`#defender-health`).animate({width: `${Math.floor(defenderHP/characters[defender].hp*100)}%`}, 200)
-                attackMultiplier++
-                // Defender fainted
-                if (defenderHP <= 0) {
-                    isBattleOver = true
-                    setTimeout(_ => {
-                        $('#battle-log').text(`Wild ${characters[defender].name.toUpperCase()} fainted!`)
-                        setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', winBattle), 300)
-                    }, 1500)
-                }
-                console.log(defenderHP)
+                chosenAttack()
                 // Pause before defender counters
                 setTimeout(_ => {
-                    // No counter if defender fainted
-                    if (isBattleOver) {
-                        return
-                    }
-                    $('#battle-log').text(`${characters[defender].name} countered with ${randomAttack()}!`)
-                    // Update chosenHP
-                    chosenHP -= characters[defender].counter
-                    $(`#chosen-health`).animate({width: `${Math.floor(chosenHP/characters[chosen].hp*100)}%`}, 200)
-                    // Lose Condition
-                    if (chosenHP <= 0) {
-                        isBattleOver = true
-                        setTimeout(_ => {
-                            $('#battle-log').text(`${characters[chosen].name} fainted! You lose!`)
-                            setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', lose), 300)
-                        }, 1500)
-                    }
-                }, 1500)
+                    defenderCounter()
+                }, 2500)
                 break
             case 'BAG':
                 $('#battle-log').text(`You're too poor to buy items!`)
@@ -180,8 +165,52 @@ const startBattle = event => {
             isPaused = false
             // Nothing else to do if battle is won
             !isBattleOver ? $('#battle-log').text(`What will ${characters[chosen].name.toUpperCase()} do?`) : ''
-        }, 3000)
+        }, 5000)
     })
+}
+
+const chosenAttack = _ => {
+    $('#battle-log').text(`${characters[chosen].name} used ${randomAttack()}!`)
+    // Update defenderHP
+    console.log(`Attack Multiplier: ${attackMultiplier}`)
+    defenderHP -= attackMultiplier * characters[chosen].attack
+    // Animate attack
+    animateCSS('#chosen-img', 'tada', _ => {
+        animateCSS('#defender-img', 'wobble')
+    })
+    $(`#defender-health`).animate({ width: `${Math.floor(defenderHP / characters[defender].hp * 100)}%` }, 200)
+    attackMultiplier++
+    // Defender fainted
+    if (defenderHP <= 0) {
+        isBattleOver = true
+        setTimeout(_ => {
+            $('#battle-log').text(`Wild ${characters[defender].name.toUpperCase()} fainted!`)
+            setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', winBattle), 300)
+        }, 2500)
+    }
+    console.log(defenderHP)
+}
+
+const defenderCounter = _ => {
+    if (isBattleOver) {
+        return
+    }
+    $('#battle-log').text(`${characters[defender].name} countered with ${randomAttack()}!`)
+    // Update chosenHP
+    chosenHP -= characters[defender].counter
+    // Animating Attack
+    animateCSS('#defender-img', 'tada', _ => {
+        animateCSS('#chosen-img', 'wobble')
+    })
+    $(`#chosen-health`).animate({ width: `${Math.floor(chosenHP / characters[chosen].hp * 100)}%` }, 400)
+    // Lose Condition
+    if (chosenHP <= 0) {
+        isBattleOver = true
+        setTimeout(_ => {
+            $('#battle-log').text(`${characters[chosen].name} fainted! You lose!`)
+            setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', lose), 300)
+        }, 2500)
+    }
 }
 
 // Won current battle

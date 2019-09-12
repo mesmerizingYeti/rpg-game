@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <link rel="stylesheet" href="./assets/css/pokemonStyle.css">
-    <title>Pokemon</title>
+    <title>Pokemon RPG</title>
 </head>
 
 <body>
@@ -30,6 +31,7 @@
                 <div id="battleground-container">
                     <img src="./assets/images/GrassBattleBackground.png" alt="Pokemon Battle Background"
                         id="battleground-img">
+                    <!-- Chosen Section -->
                     <div id="chosen-container"></div>
                     <div id="chosen-health-container" class="card">
                         <div id="chosen-title" class="card-header"></div>
@@ -40,6 +42,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Defender Section -->
                     <div id="defender-container"></div>
                     <div id="defender-health-container" class="card">
                         <div id="defender-title" class="card-header"></div>
@@ -55,31 +58,33 @@
                 <div id="battle-text-container" class="p-0">
                     <img src="./assets/images/PokemonTextBox.png" alt="Pokemon Text Box" id="battle-text-img">
                     <div id="battle-log-options-container" class="row p-0 m-0">
+                        <!-- Battle Log -->
                         <div id="battle-log-container" class="p-0">
                             <p id="battle-log"></p>
                         </div>
+                        <!-- Battle Option Buttons -->
                         <div id="battle-options-container" class="p-0"">
-                            <div id="battle-options-top-row" class="row battle-options-row px-2">
-                                <div class="col text-center top-option">
-                                    <button class="battle-option btn-primary"><strong>FIGHT</strong></button>
-                                </div>
-                                <div class="col text-center top-option ">
-                                    <button class="battle-option btn-primary"><strong>BAG</strong></button>
-                                </div>
+                            <div id=" battle-options-top-row" class="row battle-options-row px-2">
+                            <div class="col text-center top-option">
+                                <button class="battle-option btn-primary"><strong>FIGHT</strong></button>
                             </div>
-                            <div id="battle-options-bottom-row" class="row battle-options-row px-2">
-                                <div class="col text-center bottom-option">
-                                    <button class="battle-option btn-primary"><strong>POKéMON</strong></button>
-                                </div>
-                                <div class="col text-center bottom-option">
-                                    <button class="battle-option btn-primary"><strong>RUN</strong></button>
-                                </div>
+                            <div class="col text-center top-option ">
+                                <button class="battle-option btn-primary"><strong>BAG</strong></button>
+                            </div>
+                        </div>
+                        <div id="battle-options-bottom-row" class="row battle-options-row px-2">
+                            <div class="col text-center bottom-option">
+                                <button class="battle-option btn-primary"><strong>POKéMON</strong></button>
+                            </div>
+                            <div class="col text-center bottom-option">
+                                <button class="battle-option btn-primary"><strong>RUN</strong></button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     </div>
 
