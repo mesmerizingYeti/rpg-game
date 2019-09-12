@@ -33,3 +33,5 @@ const characters = [
         id: 'darth-maul'
     }
 ]
+
+const attacks = ['Lion Method', 'Arachnid Force', 'Amplified Mania Fists', 'Nimble Venom Pound', 'Lunar Shark, Raging Bust', 'Venom Mind, Judging Assault', 'Brilliant Feather Sleeping Puppet', 'Dapper Beast Biting Crocodile', 'Blessing Technique of Weather Feather', 'Drumming Shatter of Imitation Mushroom']

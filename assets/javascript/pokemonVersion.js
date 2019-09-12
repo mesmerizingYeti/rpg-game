@@ -18,11 +18,12 @@ const show = x => {
     x.css('visibility', 'visible')
 }
 
+const randomAttack = _ => attacks[Math.floor(Math.random()*(attacks.length-0.001))]
 
 
-// Choose pokemon
-const choosePokemon = _ => {
-    console.log('running choosePokemon')
+// Pick character
+const pickCharacter = _ => {
+    console.log('running pickCharacter')
     // Show correct div
     hide($('.row').not('.container'))
     show($('#choose-row'))
@@ -93,12 +94,13 @@ const setupBattle = _ => {
     // Show correct divs
     hide($('.row').not('.container'))
     show($('#battle-row'))
-    console.log($('#battle-log-container'))
-    show($('#battle-log-container'))
-    // Create characters
+    console.log($('#battle-log-options-container'))
+    show($('#battle-log-options-container'))
+    // Setup chosen
     let chosenChar = `<img src="./assets/images/${characters[chosen].id}-cartoon.png" alt="chosen" id="chosen-img" class="character-img">`
     $(`#chosen-container`).html(chosenChar)
     $(`#chosen-title`).text(characters[chosen].name)
+    // Setup defender
     let defenderChar = `<img src="./assets/images/${characters[defender].id}-cartoon.png" alt="defender" id="defender-img" class="character-img">`
     $(`#defender-container`).html(defenderChar)
     $('#defender-title').text(characters[defender].name)
@@ -117,24 +119,29 @@ const startBattle = event => {
     $('#battle-log').text(`What will ${characters[chosen].name.toUpperCase()} do?`)
     document.getElementsByTagName('body')[0].removeEventListener('click', startBattle)
 
-    $('.battle-option').click(function (event) {
-        console.log(this)
+    // $('.battle-option').click(function (event) {
+    $('body').on('click', '.battle-option', event => {
+        console.log(event)
         // If waiting for counter or battle is won, don't receive input
         if (isPaused || isBattleOver) {
             return
         }
-        switch ($(this).text()) {
+        isPaused = true
+        switch (event.currentTarget.textContent) {
             case 'FIGHT':
-                $('#battle-log').text(`${characters[chosen].name} used punch!`)
+                $('#battle-log').text(`${characters[chosen].name} used ${randomAttack()}!`)
                 // Update defenderHP
+                console.log(`Attack Multiplier: ${attackMultiplier}`)
                 defenderHP -= attackMultiplier * characters[chosen].attack
                 $(`#defender-health`).animate({width: `${Math.floor(defenderHP/characters[defender].hp*100)}%`}, 200)
                 attackMultiplier++
                 // Defender fainted
-                if (defenderHP < 0) {
+                if (defenderHP <= 0) {
                     isBattleOver = true
-                    $('#battle-log').text(`Wild ${characters[defender].name.toUpperCase()} fainted!`)
-                    setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', winBattle), 300)
+                    setTimeout(_ => {
+                        $('#battle-log').text(`Wild ${characters[defender].name.toUpperCase()} fainted!`)
+                        setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', winBattle), 300)
+                    }, 1500)
                 }
                 console.log(defenderHP)
                 // Pause before defender counters
@@ -143,17 +150,19 @@ const startBattle = event => {
                     if (isBattleOver) {
                         return
                     }
-                    $('#battle-log').text(`${characters[defender].name} countered with bitch slap!`)
+                    $('#battle-log').text(`${characters[defender].name} countered with ${randomAttack()}!`)
                     // Update chosenHP
                     chosenHP -= characters[defender].counter
                     $(`#chosen-health`).animate({width: `${Math.floor(chosenHP/characters[chosen].hp*100)}%`}, 200)
                     // Lose Condition
                     if (chosenHP <= 0) {
                         isBattleOver = true
-                        $('#battle-log').text(`${characters[chosen].name} fainted! You lose!`)
-                        setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', lose), 300)
+                        setTimeout(_ => {
+                            $('#battle-log').text(`${characters[chosen].name} fainted! You lose!`)
+                            setTimeout(_ => document.getElementsByTagName('body')[0].addEventListener('click', lose), 300)
+                        }, 1500)
                     }
-                }, 1000)
+                }, 1500)
                 break
             case 'BAG':
                 $('#battle-log').text(`You're too poor to buy items!`)
@@ -171,13 +180,15 @@ const startBattle = event => {
             isPaused = false
             // Nothing else to do if battle is won
             !isBattleOver ? $('#battle-log').text(`What will ${characters[chosen].name.toUpperCase()} do?`) : ''
-        }, 2000)
+        }, 3000)
     })
 }
 
 // Won current battle
 const winBattle = _ => {
+    // Turn off event listeners
     document.getElementsByTagName('body')[0].removeEventListener('click', winBattle)
+    $('body').off('click', '.battle-option')
     // Check number of opponents left
     if (unselected.length < 1) {
         // Win Condition
@@ -207,7 +218,9 @@ const win = _ => {
 // ***** Lose *****
 
 const lose = _ => {
+    // Turn off event listeners
     document.getElementsByTagName('body')[0].removeEventListener('click', lose)
+    $('body').off('click', '.battle-option')
     swal({
         title: 'You Lost!',
         text: 'You should just give up!',
@@ -218,7 +231,7 @@ const lose = _ => {
 
 // ***** Reset *****
 
-// Reset variables, then run choosePokemon()
+// Reset variables, then run pickCharacter()
 const resetGame = _ => {
     attackMultiplier = 1
     chosen = -1
@@ -232,7 +245,7 @@ const resetGame = _ => {
     $('.pokeball').remove()
     $('#chosen-health').css('width', '100%')
     $('#defender-health').css('width', '100%')
-    choosePokemon()
+    pickCharacter()
 }
 
 

@@ -31,13 +31,17 @@ body {
 }
 
 .top-option {
-    padding-top: 25px;
+    padding-top: 20px;
     padding-bottom: 10px;
 }
 
 .bottom-option {
     padding-top: 10px;
-    padding-bottom: 25px;
+    padding-bottom: 20px;
+}
+
+.mr-6 {
+    margin-right: 6em;
 }
 
 #hello {
@@ -106,10 +110,24 @@ body {
     bottom: 0;
 }
 
-#battle-log-container {
-    position: relative;
+#battle-log-options-container {
+    position: absolute;
     height: 20vh;
     width: 100%
+}
+
+#battle-log-container {
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 20vh;
+    width: 52%;
+}
+
+#battle-options-container {
+    position: relative;
+    height: 20vh;
+    width: 40%;
 }
 
 #battle-text-img {
